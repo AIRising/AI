@@ -1,3 +1,6 @@
+import math
+import random
+
 # This is the file you'll use to submit most of Lab 0.
 
 # Certain problems may ask you to modify other files to accomplish a certain
@@ -33,7 +36,7 @@ ANSWER_1 = '2'
 def cube(x):
     return x**3
 
-print(cube(3))
+#print(cube(3))
 
 def factorial(x):
     if x < 0:
@@ -82,13 +85,13 @@ def count_pattern(pattern, lst):
 # Problem 2.2: Expression depth
 
 def depthMapSolutionCheat(expr):
-    if not isinstance(expr, tuple):
+    if not isinstance(expr, (list, tuple)):
         return 0
     # this says: return the maximum depth of any sub-expression + 1
     return max(map(depthMapSolutionCheat, expr)) + 1
 
 def depth(exp):
-    if not isinstance(exp, tuple):
+    if not isinstance(exp, (list, tuple)):
         return 0
     depthList = [0]
     for item in exp:
@@ -98,7 +101,7 @@ def depth(exp):
 
 def godeeper(exp, depthCount, depthList):
     depthList.append(depthCount)
-    if not isinstance(exp, tuple):
+    if not isinstance(exp, (list,tuple)):
         return
     for item in exp:
         godeeper(item, depthCount+1,depthList)
@@ -114,6 +117,10 @@ def godeeper(exp, depthCount, depthList):
 #print("This should be 4")
 #print(depth(('/', ('expt', 'x', 5), ('expt', ('-', ('expt', 'x', 2),
 #1), ('/', 5, 2)))))
+#print("This should be 1")
+#print(depth([['expt', 'x', 2]]))
+#print("This should be 3")
+#print(depth([['+', ['expt', 'x', 2], ['expt', 'y', 2]]]))
 
 def recursiveTest(someInt):
     someInt-=1;
@@ -126,20 +133,17 @@ def recursiveTest(someInt):
 
 # Problem 2.3: Tree indexing
 
-def tree_ref(tree, index):
-    return str(tree[index])
-
 class RandomTree:
     def __init__(self, treeData):
         self.children = []
         for subTree in treeData:
-            if isinstance(subTree, tuple):
+            if isinstance(subTree, (list, tuple)):
                 self.children.append(RandomTree(subTree))
             else:
                 self.children.append(subTree)
 
     def __getitem__(self,index):
-        if isinstance(index, tuple):
+        if isinstance(index, (list, tuple)):
             if(len(index) > 1):
                 return self.children[index[0]][tuple([x for x in index if x != index[0]])]
             else:
@@ -149,17 +153,23 @@ class RandomTree:
 
     def __str__(self):
         return "(%s)" % ", ".join(map(str,self.children))
-        
 
-#tree = RandomTree((((1, 2), 3), (4, (5, 6)), 7, (8, 9, 10)))
+def tree_ref(tree, index):
+    randomTree = RandomTree(tree)
+    return str(randomTree[index])        
+
 #print("Tree in action should return 7")
-#print(tree_ref(tree, (2)))
+#print(tree_ref((((1, 2), 3), (4, (5, 6)), 7, (8, 9, 10)), (2)))
 #print("Tree in action should return 9")
 #print(tree_ref(tree, (3,1)))
 #print("Tree in action should return (8, 9, 10)")
 #print(tree_ref(tree, (3,)))
 #print("Tree in action should return ((1, 2), 3))")
 #print(tree_ref(tree, (0,)))
+
+#sample_tree = [[[1, 2], 3], 7, [4, [5, 6]], [8, 9, 10]]
+#randomIndex = random.randint(0,len(sample_tree)-1)
+#print(tree_ref(sample_tree, randomIndex))
 
 # Section 3: Symbolic algebra
 
