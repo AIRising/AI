@@ -62,7 +62,7 @@ class Sum(list, Expression):
     Because of this:
       * You can index into a sum like a list, as in term = sum[0].
       * You can iterate over a sum with "for term in sum:".
-      * You can convert a sum to an ordinary list with the list() constructor:
+      * You can convert a sum to an ordi__repr__nary list with the list() constructor:
          the_list = list(the_sum)
       * You can convert an ordinary list to a sum with the Sum() constructor:
          the_sum = Sum(the_list)
@@ -174,5 +174,8 @@ def do_multiply(expr1, expr2):
     '*' will not help you.
     """
     # Replace this with your solution.
-    raise NotImplementedError
+    print("Multiply Called")
 
+#(2 *
+#(x + 1) * (y + 3)) into ((2 * x * y) + (2 * x * 3) + (2 * 1 * y) + (2 *
+#1 * 3))

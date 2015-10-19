@@ -45,8 +45,8 @@ def factorial(x):
         y -= 1
     return factorialNum
 
-print("Factorial of 4 is: ")
-print(factorial(4))
+#print("Factorial of 4 is: ")
+#print(factorial(4))
 
 def count_pattern(pattern, lst):
     if (len(pattern) == 0) or (len(lst) == 0):
@@ -71,12 +71,12 @@ def count_pattern(pattern, lst):
             patternMatch = False
     return patternMatches;
 
-print("This should return 0")
-print(count_pattern( ('a', 'b'), 'a'))
-print("This should return 2")
-print(count_pattern( ('a', 'b'), ('a', 'b', 'c', 'e', 'b', 'a', 'b', 'f')))
-print("This should return 3")
-print(count_pattern(('a', 'b', 'a'), ('g', 'a', 'b', 'a', 'b', 'a','b', 'a')))
+#print("This should return 0")
+#print(count_pattern( ('a', 'b'), 'a'))
+#print("This should return 2")
+#print(count_pattern( ('a', 'b'), ('a', 'b', 'c', 'e', 'b', 'a', 'b', 'f')))
+#print("This should return 3")
+#print(count_pattern(('a', 'b', 'a'), ('g', 'a', 'b', 'a', 'b', 'a','b', 'a')))
 
 
 # Problem 2.2: Expression depth
@@ -105,15 +105,15 @@ def godeeper(exp, depthCount, depthList):
     return
     
 
-print("This should be 0")
-print(depth('x'));
-print("This should be 1")
-print(depth(('expt', 'x', 2)))
-print("This should be 2")
-print(depth(('+', ('expt', 'x', 2), ('expt', 'y', 2))))
-print("This should be 4")
-print(depth(('/', ('expt', 'x', 5), ('expt', ('-', ('expt', 'x', 2),
-1), ('/', 5, 2)))))
+#print("This should be 0")
+#print(depth('x'));
+#print("This should be 1")
+#print(depth(('expt', 'x', 2)))
+#print("This should be 2")
+#print(depth(('+', ('expt', 'x', 2), ('expt', 'y', 2))))
+#print("This should be 4")
+#print(depth(('/', ('expt', 'x', 5), ('expt', ('-', ('expt', 'x', 2),
+#1), ('/', 5, 2)))))
 
 def recursiveTest(someInt):
     someInt-=1;
@@ -121,7 +121,7 @@ def recursiveTest(someInt):
         return 12
     return recursiveTest(someInt)
 
-print(recursiveTest(10))
+#print(recursiveTest(10))
 
 
 # Problem 2.3: Tree indexing
@@ -151,15 +151,15 @@ class RandomTree:
         return "(%s)" % ", ".join(map(str,self.children))
         
 
-tree = RandomTree((((1, 2), 3), (4, (5, 6)), 7, (8, 9, 10)))
-print("Tree in action should return 7")
-print(tree_ref(tree, (2)))
-print("Tree in action should return 9")
-print(tree_ref(tree, (3,1)))
-print("Tree in action should return (8, 9, 10)")
-print(tree_ref(tree, (3,)))
-print("Tree in action should return ((1, 2), 3))")
-print(tree_ref(tree, (0,)))
+#tree = RandomTree((((1, 2), 3), (4, (5, 6)), 7, (8, 9, 10)))
+#print("Tree in action should return 7")
+#print(tree_ref(tree, (2)))
+#print("Tree in action should return 9")
+#print(tree_ref(tree, (3,1)))
+#print("Tree in action should return (8, 9, 10)")
+#print(tree_ref(tree, (3,)))
+#print("Tree in action should return ((1, 2), 3))")
+#print(tree_ref(tree, (0,)))
 
 # Section 3: Symbolic algebra
 
