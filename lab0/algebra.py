@@ -132,6 +132,8 @@ def simplify_if_possible(expr):
     """
     A helper function that guards against trying to simplify a non-Expression.
     """
+    print("Checking if expr can be simplified")
+    print(expr)
     if isinstance(expr, Expression):
         return expr.simplify()
     else:
@@ -174,8 +176,75 @@ def do_multiply(expr1, expr2):
     '*' will not help you.
     """
     # Replace this with your solution.
-    print("Multiply Called")
+    multiplyExp = []
+    multiplyExp.append("(")
+
+    expr1Sum = isinstance(expr1, Sum)
+    expr2Sum = isinstance(expr2, Sum)
+
+    fullySimplified = False
+    tempExpr1 = expr1
+    tempExpr2 = expr2
+
+    if(isinstance(tempExpr1, Expression)):
+        print("NOW WE'RE COOKING WITH GAS!!!")
+        simplify_if_possible(tempExpr1)
+
+#    while(not fullySimplified):
+#        tempExpr1 = simplify_if_possible(tempExpr1)
+#        if (tempExpr1 == expr1):
+#            fullySimplified = True
+#        expr1 = tempExpr1
+
+ #   fullySimplified = False
+ #   while(not fullySimplified):
+ #       tempExpr2 = simplify_if_possible(tempExpr2)
+ #       if (tempExpr2 == expr2):
+ #           fullySimplified = True 
+ #       expr2 = tempExpr2
+    
+    if(expr1Sum and expr2Sum):
+        print("This is 2 sums")
+        print(expr1)
+        print(expr2)
+
+    if(expr1Sum and not expr2Sum):
+        print("First is a sum, second is a product")
+        print(expr1)
+        print(expr2)
+
+    if(not expr1Sum and expr2Sum):
+        print("First is a product, second is a sum")
+        print(expr1)
+        print(expr2)
+
+    if(not expr1Sum and not expr2Sum):
+        multiplyExp.append(expr1)
+        multiplyExp.append(" * ")
+        multiplyExp.append(expr2)
+
+    multiplyExp.append(")")
+
+    return multiplyExp
 
 #(2 *
 #(x + 1) * (y + 3)) into ((2 * x * y) + (2 * x * 3) + (2 * 1 * y) + (2 *
 #1 * 3))
+
+def encode_sumprod(lst):
+    retVal = []
+
+    if isinstance(lst, Sum):
+        retVal.append('Sum')
+    elif isinstance(lst, Product):
+        retVal.append('Product')
+
+    for elt in lst:
+        if isinstance(elt, (Sum, Product)):
+            retVal.append( encode_sumprod(elt) )
+        else:
+            retVal.append(elt)
+
+    return retVal
+
+simplify_if_possible(encode_sumprod(Sum([1, Product([3, 1])])))

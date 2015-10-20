@@ -152,7 +152,7 @@ class RandomTree:
             return self.children[index]
 
     def __str__(self):
-        return "(%s)" % ", ".join(map(str,self.children))
+        return "[%s]" % ", ".join(map(str,self.children))
 
 def tree_ref(tree, index):
     randomTree = RandomTree(tree)
@@ -184,13 +184,13 @@ from algebra_utils import distribution, encode_sumprod, decode_sumprod
 # Please answer these questions inside the double quotes.
 
 # When did you take 6.01?
-WHEN_DID_YOU_TAKE_601 = ""
+WHEN_DID_YOU_TAKE_601 = "Never"
 
 # How many hours did you spend per 6.01 lab?
-HOURS_PER_601_LAB = ""
+HOURS_PER_601_LAB = "15?"
 
 # How well did you learn 6.01?
-HOW_WELL_I_LEARNED_601 = ""
+HOW_WELL_I_LEARNED_601 = "Hopefully extremely"
 
 # How many hours did this lab take?
-HOURS = ""
+HOURS = "15?"
