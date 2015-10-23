@@ -1,4 +1,4 @@
-#from UserDict import DictMixin
+﻿#from UserDict import DictMixin
 from collections import UserDict
 from collections import MutableMapping as DictMixin
 import re
@@ -7,7 +7,7 @@ class ClobberedDictKey(Exception):
     "A flag that a variable has been assigned two incompatible values."
     pass
 
-class NoClobberDict():
+class NoClobberDict(UserDict):
     """
     A dictionary-like object that prevents its values from being
     overwritten by different values. If that happens, it indicates a

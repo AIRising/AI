@@ -1,4 +1,4 @@
-import re
+﻿import re
 from utils import *
 try:
     set()
@@ -80,7 +80,7 @@ def match(template, AIStr):
         return re.match( AIStringToRegex(template), 
                          AIStr ).groupdict()
     except AttributeError: # The re.match() expression probably
-                           # just returned None
+                           # just returned None`
         return None
 
 def is_variable(str):

@@ -1,4 +1,4 @@
-# lab1.py 
+﻿# lab1.py 
 
 #You should start here when providing the answers to Problem Set 1.
 #Follow along in the problem set, which is at:
@@ -6,7 +6,7 @@
 
 # Import helper objects that provide the logical operations
 # discussed in class.
-from production import IF, AND, OR, NOT, THEN, forward_chain
+from production import IF, AND, OR, NOT, THEN, DELETE, forward_chain
 
 ## Section 1: Forward chaining ##
 
@@ -71,14 +71,14 @@ ANSWER_3 = '2'
 
 ANSWER_4 = '1'
 
-# Which rule fires second?
+## Which rule fires second?
 
 ANSWER_5 = '0'
 
 
-# Problem 1.3.1: Poker hands
+## Problem 1.3.1: Poker hands
 
-# You're given this data about poker hands:
+## You're given this data about poker hands:
 poker_data = ( 'two-pair beats pair',
                'three-of-a-kind beats two-pair',
                'straight beats three-of-a-kind',
@@ -86,17 +86,17 @@ poker_data = ( 'two-pair beats pair',
                'full-house beats flush',
                'straight-flush beats full-house' )
 
-# Fill in this rule so that it finds all other combinations of
-# which poker hands beat which, transitively. For example, it
-# should be able to deduce that a three-of-a-kind beats a pair,
-# because a three-of-a-kind beats two-pair, which beats a pair.
-transitive_rule = IF( AND(), THEN() )
+## Fill in this rule so that it finds all other combinations of
+## which poker hands beat which, transitively. For example, it
+## should be able to deduce that a three-of-a-kind beats a pair,
+## because a three-of-a-kind beats two-pair, which beats a pair.
+transitive_rule = IF( AND('(?x) beats (?y)', '(?y) beats (?z)'), THEN('(?x) beats (?z)') )
 
-# You can test your rule like this:
-# print forward_chain([transitive_rule], poker_data)
+## You can test your rule like this:
+##print(forward_chain([transitive_rule], poker_data))
 
-# Here's some other data sets for the rule. The tester uses
-# these, so don't change them.
+## Here's some other data sets for the rule. The tester uses
+## these, so don't change them.
 TEST_RESULTS_TRANS1 = forward_chain([transitive_rule],
                                     [ 'a beats b', 'b beats c' ])
 TEST_RESULTS_TRANS2 = forward_chain([transitive_rule],
@@ -114,7 +114,22 @@ TEST_RESULTS_TRANS2 = forward_chain([transitive_rule],
 
 # Then, put them together into a list in order, and call it
 # family_rules.
-family_rules = [ ]                    # fill me in
+
+
+# 'cousin x y': x and y are cousins (a parent of x and a parent of y are siblings)
+
+family_rules = [ 
+    IF('parent (?y) (?x)', THEN('same-identity (?x) (?x)')),
+    IF( AND('parent (?x) (?y)', 'parent (?x) (?z)', 'male (?y)', NOT('same-identity (?y) (?z)')), THEN('brother (?y) (?z)') ),
+    IF( AND('parent (?x) (?y)', 'parent (?x) (?z)', 'female (?y)', NOT('same-identity (?y) (?z)')), THEN('sister (?y) (?z)') ),
+    IF( AND('parent (?x) (?y)', 'female (?x)'), THEN('mother (?x) (?y)')),
+    IF( AND('parent (?x) (?y)', 'male (?x)'), THEN('father (?x) (?y)')),
+    IF( AND('parent (?x) (?y)', 'male (?y)'), THEN('son (?y) (?x)')),
+    IF( AND('parent (?x) (?y)', 'female (?y)'), THEN('daughter (?y) (?x)')),
+    IF( AND('parent (?z) (?x)', 'parent (?a) (?y)', OR('brother (?z) (?a)','sister (?z) (?a)')), THEN('cousin (?x) (?y)')),
+    IF( AND('parent (?x) (?y)', 'parent (?z) (?x)'), THEN('grandparent (?z) (?y)')),
+    IF( AND('parent (?x) (?y)', 'parent (?z) (?x)'), THEN('grandchild (?y) (?z)'))
+    ]                    # fill me in
 
 # Some examples to try it on:
 # Note: These are used for testing, so DO NOT CHANGE
@@ -123,18 +138,22 @@ simpsons_data = ("male bart",
                  "female maggie",
                  "female marge",
                  "male homer",
+                 "male uncieherb",
+                 "male uncieherbsson",
                  "male abe",
                  "parent marge bart",
+                 "parent abe uncieherb",
+                 "parent uncieherb uncieherbsson",
                  "parent marge lisa",
                  "parent marge maggie",
                  "parent homer bart",
                  "parent homer lisa",
                  "parent homer maggie",
                  "parent abe homer")
-TEST_RESULTS_6 = forward_chain(family_rules,
-                               simpsons_data,verbose=False)
+#TEST_RESULTS_6 = forward_chain(family_rules,
+#                               simpsons_data,verbose=False)
 # You can test your results by uncommenting this line:
-# print forward_chain(family_rules, simpsons_data, verbose=True)
+#print(forward_chain(family_rules, simpsons_data, verbose=True))
 
 black_data = ("male sirius",
               "male regulus",
@@ -167,7 +186,7 @@ black_family_cousins = [
     if "cousin" in x ]
 
 # To see if you found them all, uncomment this line:
-# print black_family_cousins
+#print(black_family_cousins)
 
 # To debug what happened in your rules, you can set verbose=True
 # in the function call above.

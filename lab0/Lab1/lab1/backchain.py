@@ -1,4 +1,4 @@
-from production import AND, OR, NOT, PASS, FAIL, IF, THEN, \
+﻿from production import AND, OR, NOT, PASS, FAIL, IF, THEN, \
      match, populate, simplify, variables
 from zookeeper import ZOOKEEPER_RULES
 
@@ -15,8 +15,14 @@ from zookeeper import ZOOKEEPER_RULES
 
 
 def backchain_to_goal_tree(rules, hypothesis):
-    raise NotImplementedError
+    matches = []
+    for rule in rules:
+        for expression in rule.consequent():
+            thisMatch = match(expression, hypothesis)
+            if(thisMatch):
+                matches.append(thisMatch)
+    return matches
 
 # Here's an example of running the backward chainer - uncomment
 # it to see it work:
-#print backchain_to_goal_tree(ZOOKEEPER_RULES, 'opus is a penguin')
+print(backchain_to_goal_tree(ZOOKEEPER_RULES, 'opus is a penguin'))
