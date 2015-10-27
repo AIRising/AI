@@ -349,10 +349,10 @@ def backchain_to_goal_tree_4_testanswer(val, original_val = None):
     return ( tree_map(type_encode(val), frozenset) ==
              tree_map(type_encode(result_bc_4), frozenset) )
 
-# This test checks to make sure that your backchainer produces
-# the correct goal tree given the hypothesis 'gershwin could not
-# ask for anything more' and using the rules defined in
-# backchain_to_goal_tree_4_getargs() above.
+ #This test checks to make sure that your backchainer produces
+ #the correct goal tree given the hypothesis 'gershwin could not
+ #ask for anything more' and using the rules defined in
+ #backchain_to_goal_tree_4_getargs() above.
 
 make_test(type = 'FUNCTION_ENCODED_ARGS',
           getargs = backchain_to_goal_tree_4_getargs,
