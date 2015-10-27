@@ -15,14 +15,25 @@ from zookeeper import ZOOKEEPER_RULES
 
 
 def backchain_to_goal_tree(rules, hypothesis):
-    matches = []
+    orExpression = OR(hypothesis)
     for rule in rules:
         for expression in rule.consequent():
             thisMatch = match(expression, hypothesis)
             if(thisMatch):
-                matches.append(thisMatch)
-    return matches
+                for antecedantExpression in rule.antecedent():
+                    orExpression.append(backchain_to_goal_tree(rules, antecedantExpression))
+    return orExpression
 
 # Here's an example of running the backward chainer - uncomment
 # it to see it work:
 print(backchain_to_goal_tree(ZOOKEEPER_RULES, 'opus is a penguin'))
+
+
+#OR(
+# 'opus is a penguin',
+# AND(
+# OR('opus is a bird', 'opus has feathers', AND('opus flies', 'opus
+#lays eggs'))
+# 'opus does not fly',
+# 'opus swims',
+# 'opus has black and white color' ))

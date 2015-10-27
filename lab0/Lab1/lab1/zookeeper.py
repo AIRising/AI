@@ -1,4 +1,4 @@
-from production import IF, AND, THEN, FAIL, OR
+﻿from production import IF, AND, THEN, FAIL, OR
 
 ## ZOOKEEPER RULES
 ZOOKEEPER_RULES = (
@@ -74,7 +74,14 @@ ZOOKEEPER_RULES = (
         THEN( '(?x) is an albatross' )),
     
     )
-
+#OR(
+# 'opus is a penguin',
+# AND(
+# OR('opus is a bird', 'opus has feathers', AND('opus flies', 'opus
+#lays eggs'))
+# 'opus does not fly',
+# 'opus swims',
+# 'opus has black and white color' ))
 
    
 ZOO_DATA = (

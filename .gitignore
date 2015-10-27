@@ -4,3 +4,14 @@ lab0/mitailabscripts.py
 lab0/tests.py.bak
 lab0/__pycache__/lab0.cpython-35.pyc
 lab0/__pycache__/tests.cpython-35.pyc
+lab0/__pycache__/algebra.cpython-35.pyc
+lab0/Lab1/lab1/lab1.pyproj
+lab0/Lab1/lab1/lab1.sln
+lab0/Lab1/lab1/.vs/lab1/v14/.suo
+lab0/Lab1/lab1/__pycache__/backchain.cpython-35.pyc
+lab0/Lab1/lab1/__pycache__/lab1.cpython-35.pyc
+lab0/Lab1/lab1/__pycache__/production.cpython-35.pyc
+lab0/Lab1/lab1/__pycache__/tester.cpython-35.pyc
+lab0/Lab1/lab1/__pycache__/tests.cpython-35.pyc
+lab0/Lab1/lab1/__pycache__/utils.cpython-35.pyc
+lab0/Lab1/lab1/__pycache__/zookeeper.cpython-35.pyc
